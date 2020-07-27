@@ -1,0 +1,339 @@
+<!doctype html>
+
+<html>
+    <head>
+        <title>Collins Weather</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css"/>
+        <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
+
+        <style>
+
+            html {
+                background-color: black;
+            }
+
+            #icon {
+                font-size: 50px;
+            }
+
+            #music {
+                margin-top: 40px;
+            }
+
+            .hot {
+                color: orange;
+            }
+
+            .onFire {
+                color:firebrick;
+            }
+
+            .warm {
+                color: yellow;
+            }
+
+            .cold {
+                color: blue;
+            }
+
+            .home {
+                color: whitesmoke;
+            }
+
+            .card-img-top {
+                height: 400px;
+            }
+
+            h1{
+                color: white;
+            }
+
+            h3 {
+                color: white;
+                font-size: 50px;
+            }
+
+            body {
+                background-color: black;
+                font-family: 'Nanum Gothic', sans-serif;
+            }
+
+            .fade {
+                animation: fadeIn ease 5s forwards;
+            }
+
+            .picfade {
+                animation: half-fade ease 2s forwards;
+            }
+
+            .form-group {
+                width: 50%;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .dark {
+                opacity: .8;
+            }
+
+            .card {
+                background-color: black;
+                border: 3px solid black;
+                box-shadow: 5px 5px 10px 5px black;
+            }
+
+            h1 {
+                text-align: center;
+                margin-top: 35px;
+            }
+
+            .fa {
+                font-size: 40px;
+            }
+
+            #mainbody {
+                background-image: url(img/sunny-background-2.jpg);
+                background-size: cover;
+                background-repeat: no-repeat;
+                height: 100%;
+                padding-top: 2rem;
+                padding-bottom: 2rem;
+                text-align: center;
+                box-shadow: inset 3px 3px 15px 3px black;
+            }
+
+            .dark{
+                background-color: black;
+            }
+
+            .smaller {
+                height: 400px;
+            }
+
+            .spacing {
+                line-height: 2em;
+                font-weight: bold;
+            }
+
+
+            @keyframes fadeIn {
+                0% {opacity:0;}
+                100% {opacity:1;}
+             }
+
+            @keyframes half-fade {
+                0% {opacity: .5;}
+                100% {opacity: 1;}
+            }
+
+
+        </style>
+    </head>
+    <body>
+
+
+        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+              <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+              <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+              <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img class="d-block w-100 smaller" src="img/snow-forest.jpg" alt="First slide">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Our Dedication</h5>
+                    <p>We are dedicated to bring you the bare minimum</p>
+                  </div>
+              </div>
+              <div class="carousel-item">
+                <img class="d-block w-100 smaller" src="img/snow-sun.jpg" alt="Second slide">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Keep Up-To-Date</h5>
+                    <p>Our website gives you current conditions...nothing else</p>
+                  </div>
+              </div>
+              <div class="carousel-item">
+                <img class="d-block w-100 smaller" src="img/thunderstorm.jpg" alt="Third slide">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Past, Present, Future</h5>
+                    <p>Yeah....we only have the present....we don't know the past or future</p>
+                  </div>
+              </div>
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="sr-only">Next</span>
+            </a>
+          </div>
+
+        <nav class="navbar navbar-dark dark justify-content-between">
+            <a class="navbar-brand">Zipcode Area Finder</a>
+            <div class="form-inline">
+              <input id="input-weather" class="form-control mr-sm-2" type="text" placeholder="Enter Zipcode Here">
+              <button class="btn btn-outline-primary" onClick="lookUpWeather();">Submit</button>
+            </div>
+        </nav>
+
+    <div id="mainbody" class="space">
+  
+        <div class="container">
+             <div class="row">
+                <div class="col-sm-4">
+                    <div class="card fade" style="width: 18rem;">
+                        <img id="locationimg" src="img/location/cloud.jpg" class="card-img-top dark" alt="clouds">
+                        <div class="card-img-overlay">
+                            <h1 class="spacing">Current Location</h1>
+                        </div>
+                        <div class="card-body">
+                            <h3 id="weather-location" class="card-text"></h3><span id="location-icon"><i class="fa fa-home home" aria-hidden="true"></i></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="card fade" style="width: 18rem;">
+                        <img id="conditionsimg" src="img/conditions/sunny-1.jpg" class="card-img-top dark" alt="rain">
+                        <div class="card-img-overlay">
+                            <h1 class="spacing">Current Conditions</h1>
+                        </div>
+                        <div class="card-body">
+                            <h3 id="weather-conditions" class="card-text"></h3><span id="conditions-icon"><i class="" aria-hidden="true"></i></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="card fade" style="width: 18rem;">
+                        <img id="tempimg" src="img/temperature/warm.jpg" class="card-img-top dark" alt="Clouds Sunset">
+                        <div class="card-img-overlay">
+                            <h1 class="spacing">Current Temperature</h1>
+                        </div>
+                        <div class="card-body">
+                            <h3 id="weather-temp" class="card-text"></h3><span id="temp-icon"><i class="" aria-hidden="true"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--If you ever want to know where I get my music, let me know!-->
+        <div id="music">
+            <audio controls loop><source src="mp3/weather-background.mp3" type="audio/mpeg">Your Browser Does Not Support This Audio</audio>
+            <p class="home">Just a Little Relaxing Music</p>
+        </div>
+    </div>
+
+
+        
+
+        <script type="text/javascript">
+
+            getWeather(74962);
+
+            function lookUpWeather() {
+                var zipcode = document.getElementById("input-weather");
+                var fading = document.getElementsByClassName("card");
+                $("h1").addClass("animate__animated animate__jackInTheBox");
+                $("h3").addClass("animate__animated animate__fadeIn");
+                $("img").addClass("picfade");
+                getWeather(zipcode.value);
+            };
+
+            function getWeather(zipcode) {
+                let request = new XMLHttpRequest();
+            
+                request.onreadystatechange = function() {
+                    if (request.readyState == XMLHttpRequest.DONE) {
+                        if (request.status == 200) {
+                            let forecast = JSON.parse(request.responseText);
+                            console.log(forecast);
+                            let conditions = `${forecast.name} is currently ${forecast.weather[0].main}, and ${forecast.main.temp} degrees`;
+                            console.log(conditions);
+                            var fading = document.getElementsByClassName("card");
+                            $("h1").removeClass("animate__animated animate__jackInTheBox");
+                            $("h3").removeClass("animate__animated animate__fadeIn");
+                            document.getElementById("weather-location").innerText = forecast.name;
+                            document.getElementById("weather-conditions").innerText = forecast.weather[0].main;
+                            document.getElementById("weather-temp").innerText = forecast.main.temp;
+                            $("img").removeClass("picfade");
+                            
+                            let ticon = document.getElementById("temp-icon");
+                            let licon = document.getElementById("location-icon");
+                            let cicon = document.getElementById("conditions-icon");
+
+
+                            //Changes Background / Card Due To Temperature
+                            if (forecast.main.temp >= 90) {
+                                ticon.className = "fa fa-thermometer onFire";
+                                document.getElementById("mainbody").style.backgroundImage = "url('img/on-fire.jpg')";
+                                document.getElementById("tempimg").src = ("img/temperature/WorldEnding.jpg");
+                            }
+                            else if (forecast.main.temp >= 60 && forecast.main.temp < 90) {
+                                ticon.className = "fa fa-thermometer-3 hot";
+                                document.getElementById("mainbody").style.backgroundImage = "url('img/sunny-background-2.jpg')";
+                                document.getElementById("tempimg").src = ("img/temperature/warm.jpg");
+                            }
+                            else if (forecast.main.temp < 60 && forecast.main.temp >= 33) {
+                                ticon.className = "fa fa-thermometer-2 warm";
+                                document.getElementById("mainbody").style.backgroundImage = "url('img/sunny-background-3.jpg')";
+                                document.getElementById("tempimg").src = ("img/temperature/chilly.jpg");
+                            }
+                            else {
+                                ticon.className = "fa fa-thermometer-1 cold";
+                                document.getElementById("mainbody").style.backgroundImage = "url('img/ice-background.jpg')";
+                                document.getElementById("tempimg").src = ("img/temperature/cold.jpg");
+                            }
+
+                            //Changes Current Location Picture
+                            if (forecast.coord.lat >= 50) {
+                                document.getElementById("locationimg").src = ("img/location/cloud-1.jpg");
+                            }
+                            else if (forecast.coord.lat < 50 && forecast.coord.lat >= 35) {
+                                document.getElementById("locationimg").src = ("img/location/cloud.jpg");
+                            }
+                            else {
+                                document.getElementById("locationimg").src = ("img/location/cloud-2.jpg");
+                            }
+
+                            //Changes Current Conditions Picture
+                            if (forecast.weather[0].main == "Clouds") {
+                                cicon.className = "fa fa-cloud cold";
+                                document.getElementById("conditionsimg").src = ("img/conditions/cloud-2.jpg");
+                            }
+                            else if (forecast.weather[0].main == "Rain") {
+                                cicon.className = "fa fa-umbrella cold";
+                                document.getElementById("conditionsimg").src = ("img/conditions/rain-1.jpg");
+                            }
+                            else if (forecast.weather[0].main == "Snow") {
+                                cicon.className = "fa fa-snowflake-o";
+                                document.getElementById("conditionsimg").src = ("img/conditions/cold-2.jpg");
+                            }
+                            else {
+                                cicon.className = "fa fa-sun-o warm";
+                                document.getElementById("conditionsimg").src = ("img/conditions/sunny-1.jpg");
+                            }
+
+
+                        }
+                        else {
+                            alert('There was an error');
+                        }
+                    }
+                };
+            
+                request.open("GET", "http://api.openweathermap.org/data/2.5/weather?zip=" + zipcode + ",US&units=imperial&appid=ccef2c8c8034982955bec1e0b2a83e36", true);
+                request.send();
+            }
+        </script>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+
+    </body>
+</html>
